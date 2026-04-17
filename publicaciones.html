@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Publicaciones | DentalCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="logo">
+    <i class="fas fa-tooth"></i> DentalCare
+  </div>
+  <nav id="nav-menu">
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#productos">Productos</a>
+    <a href="index.html#galeria">Galería</a>
+    <a href="publicaciones.html">Publicaciones</a>
+    <a href="index.html#reseñas">Reseñas</a>
+    <a href="index.html#contacto">Contacto</a>
+  </nav>
+  <div class="actions">
+    <button class="btn btn-outline" id="contactBtnHeader">Contáctanos</button>
+    <button class="btn btn-primary" id="surveyBtn">Encuesta</button>
+    <button id="darkModeToggleNav" class="btn btn-outline dark-mode-nav-btn" aria-label="Modo oscuro/claro">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</header>
+
+<section class="publications-page">
+  <div class="container publications-container">
+    <div class="publications-header">
+      <h1><i class="fas fa-newspaper"></i> Novedades de la clínica</h1>
+      <p>Sigue todas nuestras publicaciones, consejos y promociones especiales</p>
+    </div>
+    
+    <div class="facebook-feed" id="facebookFeed">
+      <div class="loading-pubs"><i class="fas fa-spinner fa-pulse"></i> Cargando publicaciones...</div>
+    </div>
+
+    <!-- CONTROLES DE PAGINACIÓN -->
+    <div class="pagination-controls" id="paginationControls">
+      <button id="prevPageBtn" class="btn btn-outline" disabled>← Anterior</button>
+      <span id="pageInfo" class="page-info">Página 1 de 3</span>
+      <button id="nextPageBtn" class="btn btn-outline">Siguiente →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <div class="logo"><i class="fas fa-tooth"></i> DentalCare</div>
+      <p>Cuidando tu sonrisa con tecnología, calidez y excelencia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explorar</h4>
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="index.html#galeria">Galería</a>
+      <a href="publicaciones.html">Publicaciones</a>
+      <a href="index.html#reseñas">Reseñas</a>
+    </div>
+    <div class="footer-col">
+      <h4>Atención al paciente</h4>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Términos y condiciones</a>
+      <a href="#">Agendar cita online</a>
+    </div>
+    <div class="footer-col">
+      <h4>Horario de atención</h4>
+      <p>Lun-Vie: 9am - 8pm</p>
+      <p>Sábados: 9am - 2pm</p>
+      <p>Domingos: Cerrado</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DentalCare Clínica Dental Moderna. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<div id="surveyModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <h3>📋 Encuesta de satisfacción</h3>
+    <p>¿Cómo calificarías tu experiencia con nuestra clínica?</p>
+    <div class="survey-options">
+      <button class="survey-opt">😀 Excelente</button>
+      <button class="survey-opt">🙂 Buena</button>
+      <button class="survey-opt">😐 Regular</button>
+    </div>
+    <p id="surveyFeedback" style="margin-top: 15px; font-size: 0.9rem;"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>DentalCare | Clínica Dental Moderna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- BARRA DE NAVEGACIÓN -->
+<header class="navbar" id="navbar">
+  <div class="logo">
+    <i class="fas fa-tooth"></i> DentalCare
+  </div>
+  <nav id="nav-menu">
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#productos">Productos</a>
+    <a href="index.html#galeria">Galería</a>
+    <a href="publicaciones.html">Publicaciones</a>
+    <a href="index.html#reseñas">Reseñas</a>
+    <a href="index.html#contacto">Contacto</a>
+  </nav>
+  <div class="actions">
+    <button class="btn btn-outline" id="contactBtnHeader">Contáctanos</button>
+    <button class="btn btn-primary" id="surveyBtn">Encuesta</button>
+    <button id="darkModeToggleNav" class="btn btn-outline dark-mode-nav-btn" aria-label="Modo oscuro/claro">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</header>
+
+<!-- HERO / PORTADA -->
+<section id="inicio" class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Sonrisas que inspiran</span>
+    <h1>Tu salud dental <span class="highlight">nuestra prioridad</span></h1>
+    <p>Tecnología de vanguardia, atención personalizada y resultados que transforman tu sonrisa.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary btn-large" id="heroCta">Agenda tu cita <i class="fas fa-arrow-right"></i></button>
+      <button class="btn btn-outline-light btn-large" id="heroVideo">Ver servicios</button>
+    </div>
+    <div class="hero-stats">
+      <div><span>+2.500</span><br>Pacientes felices</div>
+      <div><span>+15</span><br>Años de experiencia</div>
+      <div><span>5.0 ★</span><br>Calificación</div>
+    </div>
+  </div>
+  <div class="hero-image-bg"></div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Tratamientos avanzados</span>
+      <h2>Servicios de excelencia dental</h2>
+      <p>Cuidamos cada detalle para ofrecerte la mejor experiencia y resultados duraderos.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-smile"></i></div>
+        <h3>Estética Dental</h3>
+        <p>Blanqueamiento, carillas y sonrisa de diseño con materiales de última generación.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-microscope"></i></div>
+        <h3>Endodoncia</h3>
+        <p>Tratamiento de conducto preciso y sin dolor, salvando tus piezas dentales.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-baby-carriage"></i></div>
+        <h3>Odontopediatría</h3>
+        <p>Atención especial para los más pequeños en un ambiente cálido y divertido.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-braces"></i></div>
+        <h3>Ortodoncia</h3>
+        <p>Brackets estéticos, invisalign y alineadores modernos para alinear tu sonrisa.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-tools"></i></div>
+        <h3>Implantes 3D</h3>
+        <p>Planificación digital e implantes de última generación con alta tasa de éxito.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Prevención y limpieza</h3>
+        <p>Profilaxis profesional, selladores y fluorización para mantener tu salud bucal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Shop & cuidado oral</span>
+      <h2>Productos recomendados</h2>
+      <p>Lo mejor en higiene y bienestar dental, avalado por nuestros especialistas.</p>
+    </div>
+    <div class="products-slider">
+      <div class="product-card">
+        <div class="product-img"><i class="fas fa-toothbrush"></i></div>
+        <h4>Cepillo sónico avanzado</h4>
+        <p>Limpieza profunda, 5 modos, cabezal recargable.</p>
+        <div class="price">$39.90</div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><i class="fas fa-water"></i></div>
+        <h4>Irrigador dental portátil</h4>
+        <p>Elimina restos en zonas difíciles, 3 boquillas.</p>
+        <div class="price">$49.90</div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><i class="fas fa-jar"></i></div>
+        <h4>Kit blanqueamiento profesional</h4>
+        <p>Gel con peróxido de carbamida, resultados visibles.</p>
+        <div class="price">$59.90</div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><i class="fas fa-mouthwash"></i></div>
+        <h4>Enjuague bucal sin alcohol</h4>
+        <p>Protección 24h, frescura duradera, clínicamente testado.</p>
+        <div class="price">$12.90</div>
+      </div>
+    </div>
+    <div class="products-note">* Productos disponibles en nuestra clínica y tienda online.</div>
+  </div>
+</section>
+
+<div class="bento-grid">
+  <div class="bento-item bento-1">
+    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format" alt="Recepción moderna">
+    <div class="bento-overlay"><span>Recepción acogedora</span></div>
+  </div>
+  <div class="bento-item bento-2">
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format" alt="Consultorio dental">
+    <div class="bento-overlay"><span>Equipamiento de última gen</span></div>
+  </div>
+  <div class="bento-item bento-3">
+    <img src="https://images.unsplash.com/photo-1773332611476-6ec2ba68049f?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sala de espera">
+    <div class="bento-overlay"><span>Sala de espera relajante</span></div>
+  </div>
+  <div class="bento-item bento-4">
+    <img src="https://images.unsplash.com/photo-1776363204433-9ca6948722af?q=80&w=685&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Equipo médico">
+    <div class="bento-overlay"><span>Profesionales capacitados</span></div>
+  </div>
+  <div class="bento-item bento-5">
+    <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&auto=format" alt="Tecnología">
+    <div class="bento-overlay"><span>Radiología digital</span></div>
+  </div>
+</div>
+
+<!-- RESEÑAS -->
+<section id="reseñas" class="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Opiniones reales</span>
+      <h2>Lo que dicen nuestros pacientes</h2>
+      <p>Más de 500 reseñas con calificación 5 estrellas en Google.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Excelente atención, modernas instalaciones y profesionales muy humanos. Me hicieron un tratamiento de conducta sin dolor. ¡Recomiendo 100%!"</p>
+        <div class="client"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="avatar"><span>María González</span></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Desde que llegué a DentalCare mi sonrisa cambió por completo. Los precios son justos y el seguimiento post-tratamiento increíble."</p>
+        <div class="client"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar"><span>Carlos Méndez</span></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Mi hijo tiene 6 años y le encanta venir a sus revisiones. Juegos, premios y profesionales expertos en niños. Muy recomendado."</p>
+        <div class="client"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar"><span>Laura Fuentes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact">
+  <div class="container contact-container">
+    <div class="contact-info">
+      <span class="section-tag">Conéctate con nosotros</span>
+      <h2>Estamos para ayudarte</h2>
+      <p>Contáctanos para agendar una cita, resolver dudas o solicitar presupuesto sin compromiso.</p>
+      <ul class="contact-details">
+        <li><i class="fas fa-phone-alt"></i> +34 912 345 678</li>
+        <li><i class="fas fa-envelope"></i> hola@dentalcare.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> Av. de la Salud 123, Madrid</li>
+        <li><i class="fas fa-clock"></i> Lun - Vie: 9:00 - 20:00 | Sáb: 9:00 - 14:00</li>
+      </ul>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <form id="contactForm">
+        <div class="form-row">
+          <input type="text" placeholder="Nombre completo" id="name" required>
+          <input type="email" placeholder="Correo electrónico" id="email" required>
+        </div>
+        <input type="tel" placeholder="Teléfono / WhatsApp" id="phone">
+        <select id="serviceSelect">
+          <option value="">¿Qué servicio te interesa?</option>
+          <option>Estética dental</option>
+          <option>Ortodoncia</option>
+          <option>Implantes</option>
+          <option>Limpieza / Prevención</option>
+          <option>Consulta general</option>
+        </select>
+        <textarea rows="3" placeholder="Mensaje o comentario..." id="message"></textarea>
+        <button type="submit" class="btn btn-primary btn-block">Enviar mensaje <i class="fas fa-paper-plane"></i></button>
+        <div id="form-feedback" class="form-feedback"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <div class="logo"><i class="fas fa-tooth"></i> DentalCare</div>
+      <p>Cuidando tu sonrisa con tecnología, calidez y excelencia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explorar</h4>
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="index.html#galeria">Galería</a>
+      <a href="publicaciones.html">Publicaciones</a>
+      <a href="index.html#reseñas">Reseñas</a>
+    </div>
+    <div class="footer-col">
+      <h4>Atención al paciente</h4>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Términos y condiciones</a>
+      <a href="#">Agendar cita online</a>
+    </div>
+    <div class="footer-col">
+      <h4>Horario de atención</h4>
+      <p>Lun-Vie: 9am - 8pm</p>
+      <p>Sábados: 9am - 2pm</p>
+      <p>Domingos: Cerrado</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DentalCare Clínica Dental Moderna. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- MODAL ENCUESTA -->
+<div id="surveyModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <h3>📋 Encuesta de satisfacción</h3>
+    <p>¿Cómo calificarías tu experiencia con nuestra clínica?</p>
+    <div class="survey-options">
+      <button class="survey-opt">😀 Excelente</button>
+      <button class="survey-opt">🙂 Buena</button>
+      <button class="survey-opt">😐 Regular</button>
+    </div>
+    <p id="surveyFeedback" style="margin-top: 15px; font-size: 0.9rem;"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
