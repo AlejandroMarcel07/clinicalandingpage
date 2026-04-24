@@ -22,14 +22,14 @@
     <a href="index.html#galeria">Galería</a>
     <a href="publicaciones.html">Publicaciones</a>
     <a href="index.html#reseñas">Reseñas</a>
-    <a href="index.html#contacto">Contacto</a>
+
   </nav>
   <div class="actions">
-    <button class="btn btn-outline" id="contactBtnHeader">Contáctanos</button>
-    <button class="btn btn-primary" id="surveyBtn">Encuesta</button>
-    <button id="darkModeToggleNav" class="btn btn-outline dark-mode-nav-btn" aria-label="Modo oscuro/claro">
+        <button id="darkModeToggleNav" class="btn btn-outline dark-mode-nav-btn" aria-label="Modo oscuro/claro">
       <i class="fas fa-moon"></i>
     </button>
+    <button class="btn btn-primary" id="contactBtnHeader">Contáctanos</button>
+
   </div>
   <div class="menu-toggle" id="menu-toggle">
     <i class="fas fa-bars"></i>
@@ -47,6 +47,14 @@
       <button class="btn btn-primary btn-large" id="heroCta">Agenda tu cita <i class="fas fa-arrow-right"></i></button>
       <button class="btn btn-outline-light btn-large" id="heroVideo">Ver servicios</button>
     </div>
+
+    <div class="hero-promo">
+  <a href="publicaciones.html" class="hero-promo-link">
+    <i class="fas fa-newspaper"></i> 
+    <span>📢 ¡Novedades! Visita nuestra comunidad</span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
     <div class="hero-stats">
       <div><span>+2.500</span><br>Pacientes felices</div>
       <div><span>+15</span><br>Años de experiencia</div>
@@ -99,6 +107,27 @@
   </div>
 </section>
 
+<!-- SECCIÓN DESTACADA: COMUNIDAD / PUBLICACIONES -->
+<section class="community-promo">
+  <div class="container">
+    <div class="promo-card">
+      <div class="promo-content">
+        <span class="section-tag"><i class="fas fa-users"></i> Comunidad DentalCare</span>
+        <h2>Compartimos conocimiento <span class="highlight">para tu salud bucal</span></h2>
+        <p>Consejos de expertos, promociones exclusivas, novedades y una comunidad activa donde puedes comentar y dar like. ¡No te lo pierdas!</p>
+        <a href="publicaciones.html" class="btn btn-primary btn-large">
+          Ver todas las publicaciones <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="promo-image">
+        <i class="fas fa-comments"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-share-alt"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRODUCTOS -->
 <section id="productos" class="products">
   <div class="container">
@@ -137,7 +166,7 @@
   </div>
 </section>
 
-<div class="bento-grid">
+<div class="bento-grid" id="galeria" >
   <div class="bento-item bento-1">
     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format" alt="Recepción moderna">
     <div class="bento-overlay"><span>Recepción acogedora</span></div>
@@ -279,6 +308,25 @@
   </div>
 </div>
 
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<!-- Tu configuración de Firebase -->
+<script src="firebase-config.js"></script>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init({
+      publicKey: "S_lKrkyrMZPblJxkm", // Reemplaza con tu User ID
+    });
+  })();
+</script>
+
 <script src="script.js"></script>
+
+
 </body>
 </html>

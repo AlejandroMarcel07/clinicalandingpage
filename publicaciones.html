@@ -3,105 +3,369 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Publicaciones | DentalCare</title>
+  <title>Comunidad | DentalCare</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<header class="navbar" id="navbar">
-  <div class="logo">
-    <i class="fas fa-tooth"></i> DentalCare
-  </div>
-  <nav id="nav-menu">
-    <a href="index.html#inicio">Inicio</a>
-    <a href="index.html#servicios">Servicios</a>
-    <a href="index.html#productos">Productos</a>
-    <a href="index.html#galeria">Galería</a>
-    <a href="publicaciones.html">Publicaciones</a>
-    <a href="index.html#reseñas">Reseñas</a>
-    <a href="index.html#contacto">Contacto</a>
-  </nav>
-  <div class="actions">
-    <button class="btn btn-outline" id="contactBtnHeader">Contáctanos</button>
-    <button class="btn btn-primary" id="surveyBtn">Encuesta</button>
-    <button id="darkModeToggleNav" class="btn btn-outline dark-mode-nav-btn" aria-label="Modo oscuro/claro">
-      <i class="fas fa-moon"></i>
-    </button>
-  </div>
-  <div class="menu-toggle" id="menu-toggle">
-    <i class="fas fa-bars"></i>
-  </div>
-</header>
-
-<section class="publications-page">
-  <div class="container publications-container">
-    <div class="publications-header">
-      <h1><i class="fas fa-newspaper"></i> Novedades de la clínica</h1>
-      <p>Sigue todas nuestras publicaciones, consejos y promociones especiales</p>
-    </div>
+  <style>
+    /* Estilos específicos y mejorados para la página de comunidad */
+    .publications-page .navbar nav {
+      display: flex !important;
+    }
     
-    <div class="facebook-feed" id="facebookFeed">
-      <div class="loading-pubs"><i class="fas fa-spinner fa-pulse"></i> Cargando publicaciones...</div>
-    </div>
+    .publications-page .hero,
+    .publications-page .services,
+    .publications-page .products,
+    .publications-page .bento-grid,
+    .publications-page .testimonials,
+    .publications-page .contact {
+      display: none;
+    }
+    
+    /* Header más limpio */
+    .publications-page .navbar {
+      padding: 0.8rem 2rem;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    
+    /* Indicador de página activa */
+    .navbar .nav-link.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+    }
+    
+    /* Botón volver mejorado */
+    .back-home-btn {
+      background: transparent;
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border-light);
+    }
+    
+    .back-home-btn i {
+      font-size: 0.8rem;
+    }
+    
+    .back-home-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    body.dark-mode .back-home-btn {
+      border-color: var(--border-dark);
+    }
+    
+    body.dark-mode .back-home-btn:hover {
+      background: rgba(31, 127, 170, 0.2);
+      border-color: var(--primary);
+    }
+    
+    /* Mejoras en la cabecera de publicaciones */
+    .publications-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+    }
+    
+    .publications-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    
+    .publications-header p {
+      color: var(--text-muted-light);
+      font-size: 1rem;
+    }
+    
+    /* Posts con estilo red social profesional */
+    .facebook-post {
+      background: var(--bg-card-light);
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-light);
+      margin-bottom: 2rem;
+    }
+    
+    .facebook-post:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    }
+    
+    body.dark-mode .facebook-post {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1.2rem 1.5rem;
+    }
+    
+    .post-avatar {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4rem;
+    }
+    
+    .post-author-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    
+    .post-author-info span {
+      font-size: 0.7rem;
+      color: var(--text-muted-light);
+    }
+    
+    .post-image {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+    }
+    
+    .post-content {
+      padding: 1.2rem 1.5rem;
+    }
+    
+    .post-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    
+    .post-description {
+      color: var(--text-muted-light);
+      line-height: 1.6;
+    }
+    
+    .post-stats {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.75rem 1.5rem 1rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.85rem;
+    }
+    
+    .post-stats span {
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .post-stats span:hover {
+      color: var(--primary);
+    }
+    
+    .comments-section {
+      padding: 0 1.5rem 1.2rem 1.5rem;
+      background: var(--bg-light);
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .comments-list {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      margin-top: 10px;
+    }
+    
+    .comment-item {
+      background: var(--bg-card-light);
+      padding: 0.75rem;
+      border-radius: 1rem;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border-light);
+    }
+    
+    .comment-author {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+    
+    .comment-text {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    
+    .comment-date {
+      font-size: 0.65rem;
+      color: var(--text-muted-light);
+    }
+    
+    .add-comment {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    
+    .add-comment input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border-radius: 2rem;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card-light);
+      font-size: 0.85rem;
+    }
+    
+    .btn-comment-submit {
+      background: var(--primary);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.5rem 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 600;
+    }
+    
+    .btn-comment-submit:hover {
+      background: var(--primary-dark);
+      transform: scale(0.96);
+    }
+    
+    /* Paginación mejorada */
+    .pagination-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    
+    .pagination-controls button {
+      background: var(--bg-card-light);
+      border: 1px solid var(--border-light);
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .pagination-controls button:hover:not(:disabled) {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .page-info {
+      background: var(--primary-light);
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    /* Ajustes responsivos */
+    @media (max-width: 768px) {
+      .publications-page .navbar nav {
+        display: none !important;
+      }
+      .publications-page .navbar nav.active {
+        display: flex !important;
+      }
+      .post-title {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body class="publications-page" style="padding-top: 0; margin-top: 0;">
 
-    <!-- CONTROLES DE PAGINACIÓN -->
-    <div class="pagination-controls" id="paginationControls">
-      <button id="prevPageBtn" class="btn btn-outline" disabled>← Anterior</button>
-      <span id="pageInfo" class="page-info">Página 1 de 3</span>
-      <button id="nextPageBtn" class="btn btn-outline">Siguiente →</button>
+  <header class="navbar" id="navbar">
+    <div class="logo">
+      <i class="fas fa-tooth"></i> DentalCare
+    </div>
+    <nav id="nav-menu">
+    </nav>
+    <div class="actions">
+      <a href="index.html" class="back-home-btn">
+        <i class="fas fa-arrow-left"></i> Inicio
+      </a>
+      <button id="darkModeToggleNav" class="btn btn-outline dark-mode-nav-btn" aria-label="Modo oscuro/claro">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <section class="publications-page">
+    <div class="container publications-container">
+      
+      <div class="facebook-feed" id="facebookFeed">
+        <div class="loading-pubs"><i class="fas fa-spinner fa-pulse"></i> Cargando publicaciones...</div>
+      </div>
+
+      <div class="pagination-controls" id="paginationControls">
+        <button id="prevPageBtn" class="btn-pagination" disabled>← Anterior</button>
+        <span id="pageInfo" class="page-info">Página 1</span>
+        <button id="nextPageBtn" class="btn-pagination">Siguiente →</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="surveyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h3>📋 Encuesta de satisfacción</h3>
+      <p>¿Cómo calificarías tu experiencia con nuestra clínica?</p>
+      <div class="survey-options">
+        <button class="survey-opt">😀 Excelente</button>
+        <button class="survey-opt">🙂 Buena</button>
+        <button class="survey-opt">😐 Regular</button>
+      </div>
+      <p id="surveyFeedback" style="margin-top: 15px; font-size: 0.9rem;"></p>
     </div>
   </div>
-</section>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <div class="logo"><i class="fas fa-tooth"></i> DentalCare</div>
-      <p>Cuidando tu sonrisa con tecnología, calidez y excelencia.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Explorar</h4>
-      <a href="index.html#inicio">Inicio</a>
-      <a href="index.html#servicios">Servicios</a>
-      <a href="index.html#productos">Productos</a>
-      <a href="index.html#galeria">Galería</a>
-      <a href="publicaciones.html">Publicaciones</a>
-      <a href="index.html#reseñas">Reseñas</a>
-    </div>
-    <div class="footer-col">
-      <h4>Atención al paciente</h4>
-      <a href="#">Política de privacidad</a>
-      <a href="#">Términos y condiciones</a>
-      <a href="#">Agendar cita online</a>
-    </div>
-    <div class="footer-col">
-      <h4>Horario de atención</h4>
-      <p>Lun-Vie: 9am - 8pm</p>
-      <p>Sábados: 9am - 2pm</p>
-      <p>Domingos: Cerrado</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 DentalCare Clínica Dental Moderna. Todos los derechos reservados.</p>
-  </div>
-</footer>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-<div id="surveyModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" id="closeModal">&times;</span>
-    <h3>📋 Encuesta de satisfacción</h3>
-    <p>¿Cómo calificarías tu experiencia con nuestra clínica?</p>
-    <div class="survey-options">
-      <button class="survey-opt">😀 Excelente</button>
-      <button class="survey-opt">🙂 Buena</button>
-      <button class="survey-opt">😐 Regular</button>
-    </div>
-    <p id="surveyFeedback" style="margin-top: 15px; font-size: 0.9rem;"></p>
-  </div>
-</div>
+  <script src="firebase-config.js"></script>
 
-<script src="script.js"></script>
+
+  <!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init({
+      publicKey: "S_lKrkyrMZPblJxkm", // Reemplaza con tu User ID
+    });
+  })();
+</script>
+
+  <script src="script.js"></script>
 </body>
 </html>

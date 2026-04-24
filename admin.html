@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador - DentalCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 2rem;
+            background: var(--bg-card-light);
+            border-radius: 2rem;
+            border: 1px solid var(--border-light);
+        }
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .admin-header h1 {
+            color: var(--primary);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+        .alert {
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .step {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted-light);
+        }
+        .resend-code {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .resend-code a {
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .admin-panel {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 2rem;
+            background: var(--bg-card-light);
+            border-radius: 2rem;
+            border: 1px solid var(--border-light);
+        }
+        .post-list {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            padding-top: 1rem;
+        }
+        .post-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            background: var(--bg-light);
+            color: var(--text-light);
+            font-family: inherit;
+        }
+        .preview-img {
+            margin-top: 0.5rem;
+            max-width: 200px;
+            border-radius: 1rem;
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- PANTALLA DE VERIFICACIÓN POR CÓDIGO -->
+<div id="verificationScreen" class="admin-container">
+    <div class="admin-header">
+        <i class="fas fa-tooth" style="font-size: 3rem; color: var(--primary);"></i>
+        <h1>Acceso Administrador</h1>
+        <p>Verificación de dos pasos</p>
+    </div>
+    
+    <div id="verificationStatus"></div>
+    
+    <!-- PASO 1: Ingresar email -->
+    <div id="step1">
+        <div class="step">📧 Paso 1 de 2</div>
+        <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Correo electrónico</label>
+            <input type="email" id="adminEmail" placeholder="Ingresa tu email" autocomplete="off">
+        </div>
+        <button id="sendCodeBtn" class="btn btn-primary btn-submit">
+            <i class="fas fa-paper-plane"></i> Verificar y enviar código
+        </button>
+    </div>
+    
+    <!-- PASO 2: Ingresar código (oculto inicialmente) -->
+    <div id="step2" style="display: none;">
+        <div class="step">🔐 Paso 2 de 2</div>
+        <div class="form-group">
+            <label><i class="fas fa-key"></i> Código de verificación</label>
+            <input type="text" id="verificationCode" placeholder="Ej: 123456" maxlength="6" autocomplete="off">
+        </div>
+        <button id="verifyCodeBtn" class="btn btn-primary btn-submit">
+            <i class="fas fa-check-circle"></i> Verificar y acceder
+        </button>
+        <div class="resend-code">
+            <a id="resendCodeLink">📧 Reenviar código</a>
+        </div>
+    </div>
+</div>
+
+<!-- PANEL DE ADMINISTRACIÓN (oculto hasta verificar código) -->
+<div id="adminPanel" class="admin-panel" style="display: none;">
+    <div class="admin-header">
+        <i class="fas fa-tooth" style="font-size: 2.5rem; color: var(--primary);"></i>
+        <h1>Panel de Administración</h1>
+        <p>Gestiona las publicaciones de la comunidad</p>
+        <button id="logoutAdminBtn" class="btn btn-outline" style="margin-top: 0.5rem;">
+            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+        </button>
+    </div>
+    
+    <div id="adminPanelStatus"></div>
+    
+    <form id="createPostForm">
+        <div class="form-group">
+            <label><i class="fas fa-heading"></i> Título de la publicación</label>
+            <input type="text" id="postTitulo" required placeholder="Ej: 5 consejos para una sonrisa saludable">
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-align-left"></i> Descripción / Contenido</label>
+            <textarea id="postDescripcion" rows="4" required placeholder="Escribe el contenido de la publicación..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-image"></i> URL de la imagen (opcional)</label>
+            <input type="url" id="postImagen" placeholder="https://ejemplo.com/imagen.jpg">
+            <img id="imagePreview" class="preview-img" src="#" alt="Vista previa">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">
+            <i class="fas fa-paper-plane"></i> Publicar
+        </button>
+    </form>
+
+    <div class="post-list">
+        <h3>📝 Publicaciones existentes</h3>
+        <div id="postsList"></div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="firebase-config.js"></script>
+
+<script>
+    // Inicializar EmailJS (cambia por TU PUBLIC KEY)
+    (function() {
+        emailjs.init({
+            publicKey: "S_lKrkyrMZPblJxkm",  // ← REEMPLAZA CON TU PUBLIC KEY
+        });
+    })();
+
+    let codigoGenerado = null;
+    let codigoTimestamp = null;
+    let emailActual = null;
+    const CODIGO_EXPIRACION_MS = 5 * 60 * 1000; // 5 minutos
+    
+    // Elementos DOM
+    const verificationScreen = document.getElementById('verificationScreen');
+    const adminPanel = document.getElementById('adminPanel');
+    const step1Div = document.getElementById('step1');
+    const step2Div = document.getElementById('step2');
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const verifyCodeBtn = document.getElementById('verifyCodeBtn');
+    const resendCodeLink = document.getElementById('resendCodeLink');
+    const adminEmailInput = document.getElementById('adminEmail');
+    const verificationCodeInput = document.getElementById('verificationCode');
+    const verificationStatus = document.getElementById('verificationStatus');
+    const adminPanelStatus = document.getElementById('adminPanelStatus');
+    
+    function mostrarAlerta(elemento, mensaje, tipo) {
+        elemento.innerHTML = `<div class="alert alert-${tipo}">${mensaje}</div>`;
+        setTimeout(() => {
+            if (elemento.innerHTML.includes(mensaje)) elemento.innerHTML = '';
+        }, 5000);
+    }
+    
+    function generarCodigo() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+    
+    async function enviarCodigoPorEmail(email, codigo) {
+        const templateParams = {
+            to_email: email,
+            codigo: codigo,
+            expiracion: "5 minutos"
+        };
+        
+        try {
+            await emailjs.send(
+                'service_s8261oe',      // ← REEMPLAZA CON TU SERVICE ID
+                'template_7xgn3qa', // ← REEMPLAZA CON TU TEMPLATE ID DEL CÓDIGO
+                templateParams
+            );
+            return true;
+        } catch (error) {
+            console.error('Error EmailJS:', error);
+            return false;
+        }
+    }
+    
+    // === FUNCIÓN: VERIFICAR SI EL EMAIL ES ADMIN (petición fantasma) ===
+    // Esta función intenta escribir un documento temporal en una colección "test"
+    // Si las reglas de Firestore lo permiten (solo admin puede escribir), entonces es admin
+    async function verificarSiEsAdmin(email) {
+        try {
+            // Intentar escribir un documento temporal en una colección "admin_test"
+            // SOLO el admin con email autorizado puede escribir según las reglas de Firestore
+            const testRef = db.collection('admin_test').doc('temp_' + Date.now());
+            
+            await testRef.set({
+                email: email,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                test: true
+            });
+            
+            // Si llegamos aquí, la escritura fue exitosa → ES ADMIN
+            // Limpiar el documento de prueba
+            await testRef.delete();
+            return true;
+            
+        } catch (error) {
+            // Si el error es "permission-denied", NO es admin
+            if (error.code === 'permission-denied') {
+                console.log('Email no autorizado:', email);
+                return false;
+            }
+            // Otro error (red, etc.)
+            console.error('Error en verificación:', error);
+            return false;
+        }
+    }
+    
+    // === PASO 1: Verificar email (petición fantasma) y enviar código si es admin ===
+    sendCodeBtn.addEventListener('click', async () => {
+        const email = adminEmailInput.value.trim().toLowerCase();
+        
+        if (!email) {
+            mostrarAlerta(verificationStatus, '❌ Ingresa tu correo electrónico', 'error');
+            return;
+        }
+        
+        const originalText = sendCodeBtn.innerHTML;
+        sendCodeBtn.disabled = true;
+        sendCodeBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Verificando...';
+        
+        // 🔒 PETICIÓN FANTASMA: Verificar si el email tiene permisos de admin
+        const esAdmin = await verificarSiEsAdmin(email);
+        
+        if (!esAdmin) {
+            mostrarAlerta(verificationStatus, '❌ Este correo no tiene permisos de administrador', 'error');
+            sendCodeBtn.disabled = false;
+            sendCodeBtn.innerHTML = originalText;
+            return;
+        }
+        
+        // ✅ ES ADMIN - Generar y enviar código
+        emailActual = email;
+        codigoGenerado = generarCodigo();
+        codigoTimestamp = Date.now();
+        
+        sendCodeBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Enviando código...';
+        
+        const enviado = await enviarCodigoPorEmail(email, codigoGenerado);
+        
+        if (enviado) {
+            mostrarAlerta(verificationStatus, `✅ Código enviado a ${email}. Revisa tu bandeja de entrada.`, 'success');
+            step1Div.style.display = 'none';
+            step2Div.style.display = 'block';
+            verificationCodeInput.value = '';
+            verificationCodeInput.focus();
+        } else {
+            mostrarAlerta(verificationStatus, '❌ Error al enviar el código. Intenta nuevamente.', 'error');
+            codigoGenerado = null;
+        }
+        
+        sendCodeBtn.disabled = false;
+        sendCodeBtn.innerHTML = originalText;
+    });
+    
+    // === REENVIAR CÓDIGO ===
+    resendCodeLink.addEventListener('click', async () => {
+        if (!emailActual) return;
+        
+        codigoGenerado = generarCodigo();
+        codigoTimestamp = Date.now();
+        
+        mostrarAlerta(verificationStatus, '📧 Reenviando código...', 'info');
+        
+        const enviado = await enviarCodigoPorEmail(emailActual, codigoGenerado);
+        
+        if (enviado) {
+            mostrarAlerta(verificationStatus, `✅ Nuevo código enviado a ${emailActual}`, 'success');
+        } else {
+            mostrarAlerta(verificationStatus, '❌ Error al reenviar el código', 'error');
+        }
+    });
+    
+    // === PASO 2: Verificar código ===
+    verifyCodeBtn.addEventListener('click', async () => {
+        const codigoIngresado = verificationCodeInput.value.trim();
+        
+        if (!codigoIngresado) {
+            mostrarAlerta(verificationStatus, '❌ Ingresa el código de verificación', 'error');
+            return;
+        }
+        
+        if (!codigoTimestamp || (Date.now() - codigoTimestamp) > CODIGO_EXPIRACION_MS) {
+            mostrarAlerta(verificationStatus, '⏰ El código ha expirado. Solicita uno nuevo.', 'error');
+            step1Div.style.display = 'block';
+            step2Div.style.display = 'none';
+            codigoGenerado = null;
+            return;
+        }
+        
+        if (codigoIngresado !== codigoGenerado) {
+            mostrarAlerta(verificationStatus, '❌ Código incorrecto. Intenta nuevamente.', 'error');
+            return;
+        }
+        
+        // ✅ CÓDIGO CORRECTO - ACCEDER AL PANEL
+        mostrarAlerta(verificationStatus, '✅ Código verificado. Accediendo al panel...', 'success');
+        
+        verificationScreen.style.display = 'none';
+        adminPanel.style.display = 'block';
+        
+        cargarPublicaciones();
+    });
+    
+    // === CERRAR SESIÓN ===
+    document.getElementById('logoutAdminBtn').addEventListener('click', () => {
+        verificationScreen.style.display = 'block';
+        adminPanel.style.display = 'none';
+        step1Div.style.display = 'block';
+        step2Div.style.display = 'none';
+        adminEmailInput.value = '';
+        verificationCodeInput.value = '';
+        codigoGenerado = null;
+        codigoTimestamp = null;
+        emailActual = null;
+        verificationStatus.innerHTML = '';
+    });
+    
+    // === VISTA PREVIA DE IMAGEN ===
+    const postImagen = document.getElementById('postImagen');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    if (postImagen) {
+        postImagen.addEventListener('input', (e) => {
+            if (e.target.value) {
+                imagePreview.src = e.target.value;
+                imagePreview.style.display = 'block';
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        });
+    }
+    
+    // === CREAR PUBLICACIÓN ===
+    const createPostForm = document.getElementById('createPostForm');
+    if (createPostForm) {
+        createPostForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const titulo = document.getElementById('postTitulo').value.trim();
+            const descripcion = document.getElementById('postDescripcion').value.trim();
+            const imagen = document.getElementById('postImagen').value.trim();
+            
+            if (!titulo || !descripcion) {
+                mostrarAlerta(adminPanelStatus, '❌ Título y descripción son obligatorios', 'error');
+                return;
+            }
+            
+            const submitBtn = document.querySelector('#createPostForm button');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Publicando...';
+            
+            try {
+                await db.collection('publicaciones').add({
+                    titulo: titulo,
+                    descripcion: descripcion,
+                    imagen: imagen || null,
+                    likes: 0,
+                    comentariosCount: 0,
+                    fechaCreacion: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                mostrarAlerta(adminPanelStatus, '✅ ¡Publicación creada exitosamente!', 'success');
+                document.getElementById('createPostForm').reset();
+                imagePreview.style.display = 'none';
+                cargarPublicaciones();
+                
+            } catch (error) {
+                console.error(error);
+                mostrarAlerta(adminPanelStatus, '❌ Error al publicar: ' + error.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
+    
+    // === CARGAR PUBLICACIONES ===
+    async function cargarPublicaciones() {
+        const container = document.getElementById('postsList');
+        if (!container) return;
+        
+        container.innerHTML = '<div style="text-align:center;"><i class="fas fa-spinner fa-pulse"></i> Cargando...</div>';
+        
+        try {
+            const snapshot = await db.collection('publicaciones')
+                .orderBy('fechaCreacion', 'desc')
+                .get();
+            
+            if (snapshot.empty) {
+                container.innerHTML = '<div style="text-align:center; color: var(--text-muted-light);">📭 No hay publicaciones aún. Crea la primera arriba.</div>';
+                return;
+            }
+            
+            let html = '';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const fecha = data.fechaCreacion?.toDate?.()?.toLocaleDateString('es-ES') || 'Reciente';
+                html += `
+                    <div class="post-item">
+                        <div>
+                            <strong>📌 ${escapeHtml(data.titulo)}</strong><br>
+                            <small><i class="far fa-calendar-alt"></i> ${fecha}</small>
+                        </div>
+                        <button class="delete-btn" data-id="${doc.id}">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    if (confirm('⚠️ ¿Estás seguro de eliminar esta publicación?')) {
+                        try {
+                            await db.collection('publicaciones').doc(btn.dataset.id).delete();
+                            mostrarAlerta(adminPanelStatus, '🗑️ Publicación eliminada', 'success');
+                            cargarPublicaciones();
+                        } catch (error) {
+                            mostrarAlerta(adminPanelStatus, '❌ Error al eliminar', 'error');
+                        }
+                    }
+                });
+            });
+            
+        } catch (error) {
+            console.error(error);
+            container.innerHTML = '<div style="color: red; text-align:center;">❌ Error al cargar publicaciones</div>';
+        }
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+</script>
+</body>
+</html>
