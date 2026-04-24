@@ -349,6 +349,9 @@
     </div>
   </div>
 
+  <!-- Primero la configuración segura -->
+<script src="config.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
@@ -356,14 +359,14 @@
   <script src="firebase-config.js"></script>
 
 
-  <!-- EmailJS SDK -->
+<!-- Luego EmailJS -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function(){
-    emailjs.init({
-      publicKey: "S_lKrkyrMZPblJxkm", // Reemplaza con tu User ID
-    });
-  })();
+    (function() {
+        emailjs.init({
+            publicKey: CONFIG.EMAILJS_PUBLIC_KEY,
+        });
+    })();
 </script>
 
   <script src="script.js"></script>

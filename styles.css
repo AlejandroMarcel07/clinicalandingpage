@@ -12,7 +12,7 @@
   --bg-card-light: #ffffff;
   --text-light: #1e293b;
   --text-muted-light: #475569;
-  --border-light: #eef2f6;
+  --border-light: #cbd5e1;
   --shadow-light: 0 8px 20px rgba(0,0,0,0.02);
   
   --bg-dark: #0f172a;
@@ -145,7 +145,7 @@ nav a:hover {
 
 .btn-outline {
   background: transparent;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-light);
   color: var(--text-light);
 }
 
@@ -155,10 +155,35 @@ nav a:hover {
 }
 
 .btn-outline-light {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.4);
-  color: white;
+  background: transparent;
+  border: 1px solid var(--primary-light);
+  color: var(--text-light);
+}
+
+.btn-outline-light:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+body.dark-mode .btn-outline-light {
+  background: transparent;
+  border: 1px solid var(--border-light);
+}
+
+body.dark-mode .btn-outline-light:hover {
+  background: rgba(31, 127, 170, 0.2);
+  border-color: var(--primary);
+}
+
+
+
+body.dark-mode .btn-outline {
+  border-color: var(--border-dark);
+}
+    
+body.dark-mode .btn-outline:hover {
+  background: rgba(31, 127, 170, 0.2);
+  border-color: var(--primary);
 }
 
 .btn-large {

@@ -210,6 +210,8 @@
     </div>
 </div>
 
+<script src="config.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
@@ -217,10 +219,17 @@
 <script src="firebase-config.js"></script>
 
 <script>
+
+        // Verificar que CONFIG existe
+    if (typeof CONFIG === 'undefined') {
+        console.error('❌ ERROR: config.js no está cargado. Crea el archivo config.js con tus claves.');
+        alert('Error de configuración. Contacta al administrador.');
+    }
+
     // Inicializar EmailJS (cambia por TU PUBLIC KEY)
     (function() {
         emailjs.init({
-            publicKey: "S_lKrkyrMZPblJxkm",  // ← REEMPLAZA CON TU PUBLIC KEY
+            publicKey: CONFIG.EMAILJS_PUBLIC_KEY,
         });
     })();
 
@@ -262,8 +271,8 @@
         
         try {
             await emailjs.send(
-                'service_s8261oe',      // ← REEMPLAZA CON TU SERVICE ID
-                'template_7xgn3qa', // ← REEMPLAZA CON TU TEMPLATE ID DEL CÓDIGO
+                CONFIG.EMAILJS_SERVICE_ID,
+                CONFIG.EMAILJS_TEMPLATE_CODIGO,
                 templateParams
             );
             return true;
