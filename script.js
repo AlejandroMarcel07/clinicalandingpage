@@ -643,6 +643,7 @@ if(contactForm){
       } catch (error) { feed.innerHTML = '<div class="loading-pubs">❌ Error al cargar publicaciones.</div>'; }
     }
     
+    
     async function cargarPagina(pagina) {
       const feed = document.getElementById('facebookFeed');
       const inicio = (pagina - 1) * PUBLICACIONES_POR_PAGINA;
