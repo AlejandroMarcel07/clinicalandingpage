@@ -1199,3 +1199,46 @@ body.dark-mode .hero-promo-link {
   background: rgba(31, 127, 170, 0.25);
   color: var(--primary-light);
 }
+
+/* ========== AVATAR DE USUARIO CON COLORES ========== */
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.user-avatar:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Colores predefinidos para diferentes usuarios */
+.user-avatar.color-1 { background: linear-gradient(135deg, #6C5CE7, #A29BFE); }
+.user-avatar.color-2 { background: linear-gradient(135deg, #00B894, #55EFC4); }
+.user-avatar.color-3 { background: linear-gradient(135deg, #FD79A8, #FDCB6E); }
+.user-avatar.color-4 { background: linear-gradient(135deg, #0984E3, #74B9FF); }
+.user-avatar.color-5 { background: linear-gradient(135deg, #E17055, #FDCB6E); }
+.user-avatar.color-6 { background: linear-gradient(135deg, #6C5CE7, #FD79A8); }
+.user-avatar.color-7 { background: linear-gradient(135deg, #00CEC9, #81ECEC); }
+.user-avatar.color-8 { background: linear-gradient(135deg, #FDCB6E, #F39C12); }
+
+/* Ajuste para modo oscuro */
+body.dark-mode .user-avatar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
