@@ -3,7 +3,7 @@
 
 const CONFIG = {
     // Firebase - Tomado de variables de entorno
-    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY || "AIzaSyCsM9iEZ6xKZN8asWvWkG66KQse9eReeKA",
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN || "dentaljarquin-af2fa.firebaseapp.com",
     FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID || "dentaljarquin-af2fa",
     FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET || "dentaljarquin-af2fa.firebasestorage.app",
